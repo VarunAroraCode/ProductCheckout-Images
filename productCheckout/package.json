@@ -6,7 +6,7 @@
   "scripts": {
     "nodemon": "nodemon ./server/index.js",
     "react-dev": "webpack -d --watch",
-    "seed-data": "node database/index.js"
+    "seed-data": "node database/seed-data.js"
   },
   "author": "",
   "license": "ISC",

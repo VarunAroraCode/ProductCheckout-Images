@@ -23,8 +23,10 @@ constructor(props){
           <div>
             <div className="productHeader">
               <div>
-                <span>*****</span>
-                <span>(1)</span>
+                <span>
+                <img src="https://2.bp.blogspot.com/-FzDfZz-hZDc/WX5qg-fQlHI/AAAAAAAAIPg/_OJNAFND8XoeD-hv6-eDVCXBiHkzNYuowCLcBGAs/s1600/5Stars.jpg" width="80"/>
+                </span>
+                <span>({Math.floor(Math.random()*50)})</span>
               </div>
               <div>
                 <h1 className="itemName">{this.props.todo[0].itemName}</h1>
