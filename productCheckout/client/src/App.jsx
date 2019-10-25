@@ -15,8 +15,8 @@ class App extends React.Component{
     //below, have it access a specific item number ex: data{item}
     //where item is the URL that gets passed in from the server
     var productID = window.location.pathname.split('/')[1]
-    console.log(productID)
-    axios.get(`/api/${productID}`)
+    console.log('hi jordan')
+    axios.get(`http://localhost:4000/api/${productID}`)
     .then(response =>{
       this.setState({ data: response.data});
       console.log(this.state.data)
