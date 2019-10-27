@@ -14,8 +14,9 @@ class App extends React.Component{
     //have a string that cuts the datapoint here, and in the get request
     //below, have it access a specific item number ex: data{item}
     //where item is the URL that gets passed in from the server
-    var productID = window.location.pathname.split('/')[1]
-    axios.get(`http://localhost:4000/api/${productID}`)
+    var productID = window.location.pathname.split('/');
+	  var lastSegment = productID.pop() || productID.pop();
+    axios.get(`http://ec2-18-222-138-175.us-east-2.compute.amazonaws.com:4002/api/${lastSegment}`)
     .then(response =>{
       this.setState({ data: response.data});
       console.log(this.state.data)
@@ -30,7 +31,7 @@ class App extends React.Component{
             </div>
           )
      }else{
-              return <div></div>
+              return <div>Rendering to Browser</div>
           }
       }
   }
