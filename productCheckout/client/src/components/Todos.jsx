@@ -5,17 +5,32 @@ import React from 'react';
 class Todos extends React.Component{
 constructor(props){
   super(props);
-//   this.state = {
-//     id: null,
-//     itemName: null,
-//     price: null,
-//     description: null,
-//     colors: null,
-//     inventory: null,
-//     views: null,
-//     shippingCost: null
-//   }
+  this.state = {
+    size: 'Size',
+    color: 'Color',
+    bag: "Add to Bag",
+    gift: 'Add to Wish List'
+  }
+  this.handleChange = this.handleChange.bind(this);
+  this.handleSubmit = this.handleSubmit.bind(this);
+  this.handleClick = this.handleClick.bind(this);
+  this.giftClick = this.giftClick.bind(this);
 }
+handleChange(event) {
+  this.setState({size: event.target.value});
+  this.setState({color: event.target.value});
+  this.setState({bag: "Add to Bag"})
+}
+handleClick() {
+  this.setState({bag: 'In Your Bag!'})
+}
+handleSubmit(event) {
+  event.preventDefault();
+}
+giftClick(){
+  this.setState({gift: "Added to your Wish List!"})
+}
+
     render() {
         console.log(this.props.todo)
       return (
@@ -36,7 +51,7 @@ constructor(props){
               </section>
               <div>
                 <section>
-                  <span><strong>{this.props.todo[0].price}</strong></span>
+                  <span><strong>${this.props.todo[0].price}</strong></span>
                   <span className="freeShipping"> Free Shipping</span>
                 </section>
               </div>
@@ -52,22 +67,38 @@ constructor(props){
                 </div>
                 <div>
                   <div>
-                    <div className="dropDown">
-                        <button>
-                            <span><strong>Size</strong></span>
-                            <span>\/</span>
-                        </button>
+                    <div>
+                    <form onSubmit={this.handleSubmit}>
+                      <label>
+                        <select className="dropDown" value={this.state.size} onChange={this.handleChange}>
+                          <option value="Small">Small</option>
+                          <option value="Medium">Medium</option>
+                          <option value="Large">Large</option>
+                        </select>
+                      </label>
+                      {/* <input type="submit" value="Submit" /> */}
+                    </form>
                     </div>
                     <aside>
                       <a>
                         <span className="sizeGuide">Size guides</span>
                       </a>
                     </aside>
-                    <div className="dropDown">
-                        <button>
-                            <span><strong>Color</strong></span>
-                            <span style={{marginLeft: '50px', textAlign:'center'}}>\/</span>
-                        </button>
+                    <div>
+                    <form onSubmit={this.handleSubmit}>
+                      <label>
+                        <select className="dropDown" value={this.state.color} onChange={this.handleChange}>
+                          <option value="Navy">Navy</option>
+                          <option value="Chestnut">Chestnut</option>
+                          <option value="Sunset">Sunset</option>
+                          <option value="Crimson">Crimson</option>
+                          <option value="Magenta">Magenta</option>
+                          <option value="Wine">Wine</option>
+                          <option value="Charcoal">Charcoal</option>
+                        </select>
+                      </label>
+                      {/* <input type="submit" value="Submit" /> */}
+                    </form>
                     </div>
                   </div>
                 </div>
@@ -108,7 +139,7 @@ constructor(props){
               <div>
                 <div>
                   <span>
-                  <input type = 'number' aria-label = 'quantity' maxLength='2' max='99' min='1' required value='1'></input>
+                  <input type = 'number' aria-label = 'quantity' maxLength='2' max="99" min='1' required value='1'></input>
                   </span>
                   <span className="viewing">
                     <strong>{this.props.todo[0].views}</strong> people are viewing</span>
@@ -116,8 +147,8 @@ constructor(props){
               </div>
               <div>
                 <div>
-                  <button className="bagButton">
-                    <span>add to bag</span>
+                  <button className="bagButton" onClick={this.handleClick}>
+                    <span>{this.state.bag}</span>
                   </button>
                 </div>
               </div>
@@ -125,7 +156,7 @@ constructor(props){
                 <span>
                   <div>
                     <a>
-                      <span>Add To Wish List</span>
+                      <span className="addToWish" onClick={this.giftClick} >{this.state.gift}</span>
                     </a>
                   </div>
                 </span>
