@@ -11,15 +11,20 @@ constructor(props){
     bag: "Add to Bag",
     gift: 'Add to Wish List'
   }
-  this.handleChange = this.handleChange.bind(this);
+  this.handleSize = this.handleSize.bind(this);
+  this.handleColor = this.handleColor.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
   this.handleClick = this.handleClick.bind(this);
   this.giftClick = this.giftClick.bind(this);
 }
-handleChange(event) {
+handleSize(event) {
   this.setState({size: event.target.value});
-  this.setState({color: event.target.value});
   this.setState({bag: "Add to Bag"})
+}
+handleColor(event){
+  this.setState({color: event.target.value})
+  this.setState({bag: "Add to Bag"})
+
 }
 handleClick() {
   this.setState({bag: 'In Your Bag!'})
@@ -41,7 +46,7 @@ giftClick(){
                 <span>
                 <img src="https://2.bp.blogspot.com/-FzDfZz-hZDc/WX5qg-fQlHI/AAAAAAAAIPg/_OJNAFND8XoeD-hv6-eDVCXBiHkzNYuowCLcBGAs/s1600/5Stars.jpg" width="80"/>
                 </span>
-                <span>({Math.floor(Math.random()*50)})</span>
+                <span>({this.props.todo[0].views})</span>
               </div>
               <div>
                 <h1 className="itemName">{this.props.todo[0].itemName}</h1>
@@ -70,7 +75,7 @@ giftClick(){
                     <div>
                     <form onSubmit={this.handleSubmit}>
                       <label>
-                        <select className="dropDown" value={this.state.size} onChange={this.handleChange}>
+                        <select className="dropDown" value={this.state.size} onChange={this.handleSize}>
                           <option value="Small">Small</option>
                           <option value="Medium">Medium</option>
                           <option value="Large">Large</option>
@@ -87,7 +92,7 @@ giftClick(){
                     <div>
                     <form onSubmit={this.handleSubmit}>
                       <label>
-                        <select className="dropDown" value={this.state.color} onChange={this.handleChange}>
+                        <select className="dropDown" value={this.state.color} onChange={this.handleColor}>
                           <option value="Navy">Navy</option>
                           <option value="Chestnut">Chestnut</option>
                           <option value="Sunset">Sunset</option>
