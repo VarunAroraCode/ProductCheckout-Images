@@ -31,7 +31,7 @@ class App extends React.Component{
             </div>
           )
      }else{
-              return <div>Rendering to Browser</div>
+              return <div></div>
           }
       }
   }
