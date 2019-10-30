@@ -16,7 +16,7 @@ class App extends React.Component{
     //where item is the URL that gets passed in from the server
     var productID = window.location.pathname.split('/');
 	  var lastSegment = productID.pop() || productID.pop();
-    axios.get(`http://localhost:4002/api/${lastSegment}/#`)
+    axios.get(`http://3.133.180.88:4002/api/${lastSegment}/#`)
     .then(response =>{
       this.setState({ data: response.data});
       console.log(this.state.data)
